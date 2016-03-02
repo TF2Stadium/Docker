@@ -1,0 +1,96 @@
+version: '2'
+services:
+  helen:
+    image: tf2stadium/helen
+    restart: on-failure
+    depends_on:
+      - database
+      - rabbitmq
+      - pauling
+      - fumble
+    environment:
+      # These 6 variables need to be changed
+      - HELEN_PUBLIC_ADDR=
+      - HELEN_SERVER_REDIRECT_PATH=
+      - HELEN_SERVER_OPENID_REALM=
+      - HELEN_SERVER_COOKIE_DOMAIN=
+      - HELEN_STEAM_API_KEY=
+      - HELEN_TWITCH_CLIENT_ID=
+      - HELEN_TWITCH_CLIENT_SECRET=
+
+      - HELEN_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+      - HELEN_DATABASE_ADDR=database:5432
+
+    ports: #Change ports here
+      - "8080:80"
+      - "8081:81"
+    entrypoint: /bin/helen -disable_pauling=false -disable_fumble=false
+    stop_signal: SIGTERM
+
+  frontend:
+    image: tf2stadium/frontend:dev
+    depends_on:
+      - helen
+    environment: #Set these variables
+      - WS_ENDPOINT=
+      - API_ENDPOINT=
+    ports:
+      - "3000:80"
+
+  fumble:
+    image: vibhavp/fumble
+    restart: on-failure
+    depends_on:
+      - database
+      - murmur
+      - rabbitmq
+    environment:
+      - DB_USERNAME=tf2stadium
+      - DB_PASSWORD=dickbutt
+      - DB_URL=database
+      - DB_NAME=tf2stadium
+      - DEBUG=true
+      - ICE_SECRET=pass
+      - ICE_HOST=murmur
+      - FUMBLE_MUMBLE_ADDR=murmur:64738
+      - FUMBLE_MUMBLE_USERNAME=SuperUser
+      - FUMBLE_MUMBLE_PASSWORD=password
+      - FUMBLE_DATABASE_ADDR=database:5432
+      - FUMBLE_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+    ports:
+      - "8082:80"
+
+  pauling:
+    image: tf2stadium/pauling
+    restart: on-failure
+    stop_signal: SIGTERM
+    depends_on:
+      - database
+      - rabbitmq
+    ports:
+      - "8002:8002/udp"
+    environment:
+    - PAULING_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+    - PAULING_DATABASE_ADDR=database:5432
+
+  database:
+    image: postgres
+    environment:
+    - POSTGRES_PASSWORD=dickbutt
+    - POSTGRES_USER=tf2stadium
+    - POSTGRES_DB=tf2stadium
+    volumes:
+    - /var/lib/postgresql
+    - /etc/postgresql
+    - /var/log/postgresql
+
+  rabbitmq:
+    image: rabbitmq
+
+  murmur:
+    image: vibhavp/murmur
+    environment: #Set superuser password here
+      - MURMUR_PASSWORD=password
+    ports:
+      - "64738:64738/tcp"
+      - "64378:64738/udp"
