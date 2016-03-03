@@ -1,7 +1,7 @@
 version: '2'
 services:
   helen:
-    image: tf2stadium/helen
+    image: tf2stadium/helen:dev
     restart: on-failure
     depends_on:
       - database
@@ -17,6 +17,7 @@ services:
       - HELEN_STEAM_API_KEY=
       - HELEN_TWITCH_CLIENT_ID=
       - HELEN_TWITCH_CLIENT_SECRET=
+      - HELEN_COOKIE_STORE_SECRET=
 
       - HELEN_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
       - HELEN_DATABASE_ADDR=database:5432
@@ -61,7 +62,7 @@ services:
       - "8082:80"
 
   pauling:
-    image: tf2stadium/pauling
+    image: tf2stadium/pauling:dev
     restart: on-failure
     stop_signal: SIGTERM
     depends_on:
