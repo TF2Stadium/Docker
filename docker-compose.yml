@@ -18,6 +18,7 @@ services:
       - HELEN_TWITCH_CLIENT_ID=
       - HELEN_TWITCH_CLIENT_SECRET=
       - HELEN_COOKIE_STORE_SECRET=
+      - HELEN_MUMBLE_ADDR=
 
       - HELEN_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
       - HELEN_DATABASE_ADDR=database:5432
