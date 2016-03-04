@@ -23,7 +23,7 @@ services:
       - HELEN_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
       - HELEN_DATABASE_ADDR=database:5432
 
-    ports: #Change ports here
+    ports:
       - "8080:80"
       - "8081:81"
     entrypoint: /bin/helen -disable_pauling=false -disable_fumble=false
@@ -33,47 +33,11 @@ services:
     image: tf2stadium/frontend:dev
     depends_on:
       - helen
-    environment: #Set these variables
-      - WS_ENDPOINT=
-      - API_ENDPOINT=
-    ports:
-      - "3000:80"
-
-  fumble:
-    image: vibhavp/fumble
-    restart: on-failure
-    depends_on:
-      - database
-      - murmur
-      - rabbitmq
     environment:
-      - DB_USERNAME=tf2stadium
-      - DB_PASSWORD=dickbutt
-      - DB_URL=database
-      - DB_NAME=tf2stadium
-      - DEBUG=true
-      - ICE_SECRET=pass
-      - ICE_HOST=murmur
-      - FUMBLE_MUMBLE_ADDR=murmur:64738
-      - FUMBLE_MUMBLE_USERNAME=SuperUser
-      - FUMBLE_MUMBLE_PASSWORD=password
-      - FUMBLE_DATABASE_ADDR=database:5432
-      - FUMBLE_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+      - WS_ENDPOINT=ws://vibhavp.duckdns.org:8080/websocket/
+      - API_ENDPOINT=http://vibhavp.duckdns.org:8080
     ports:
-      - "8082:80"
-
-  pauling:
-    image: tf2stadium/pauling:dev
-    restart: on-failure
-    stop_signal: SIGTERM
-    depends_on:
-      - database
-      - rabbitmq
-    ports:
-      - "8002:8002/udp"
-    environment:
-    - PAULING_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
-    - PAULING_DATABASE_ADDR=database:5432
+      - "80:80"
 
   database:
     image: postgres
@@ -91,8 +55,46 @@ services:
 
   murmur:
     image: vibhavp/murmur
-    environment: #Set superuser password here
-      - MURMUR_PASSWORD=password
+    environment:
+      #CHANGE THIS
+      - MURMUR_PASSWORD=
     ports:
       - "64738:64738/tcp"
       - "64378:64738/udp"
+
+  fumble:
+    image: tf2stadium/fumble
+    restart: on-failure
+    depends_on:
+      - database
+      - murmur
+      - rabbitmq
+    environment:
+      - DB_USERNAME=tf2stadium
+      - DB_PASSWORD=dickbutt
+      - DB_URL=database
+      - DB_NAME=tf2stadium
+      - DEBUG=true
+      - ICE_SECRET=pass
+      - ICE_HOST=murmur
+      - FUMBLE_MUMBLE_ADDR=murmur:64738
+      - FUMBLE_MUMBLE_USERNAME=SuperUser
+      #CHANGE THIS
+      - FUMBLE_MUMBLE_PASSWORD=
+      - FUMBLE_DATABASE_ADDR=database:5432
+      - FUMBLE_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+    ports:
+      - "8082:80"
+
+  pauling:
+    image: tf2stadium/pauling:dev
+    restart: on-failure
+    stop_signal: SIGTERM
+    depends_on:
+      - database
+      - rabbitmq
+    ports:
+      - "8002:8002/udp"
+    environment:
+    - PAULING_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+    - PAULING_DATABASE_ADDR=database:5432
