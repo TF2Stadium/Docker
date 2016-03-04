@@ -34,8 +34,8 @@ services:
     depends_on:
       - helen
     environment:
-      - WS_ENDPOINT=ws://vibhavp.duckdns.org:8080/websocket/
-      - API_ENDPOINT=http://vibhavp.duckdns.org:8080
+      - WS_ENDPOINT=
+      - API_ENDPOINT=
     ports:
       - "80:80"
 
