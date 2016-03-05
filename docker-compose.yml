@@ -8,20 +8,7 @@ services:
       - rabbitmq
       - pauling
       - fumble
-    environment:
-      # These 6 variables need to be changed
-      - HELEN_PUBLIC_ADDR=
-      - HELEN_SERVER_REDIRECT_PATH=
-      - HELEN_SERVER_OPENID_REALM=
-      - HELEN_SERVER_COOKIE_DOMAIN=
-      - HELEN_STEAM_API_KEY=
-      - HELEN_TWITCH_CLIENT_ID=
-      - HELEN_TWITCH_CLIENT_SECRET=
-      - HELEN_COOKIE_STORE_SECRET=
-      - HELEN_MUMBLE_ADDR=
-
-      - HELEN_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
-      - HELEN_DATABASE_ADDR=database:5432
+    env_file: env/helen-dev.env
 
     ports:
       - "8080:80"
@@ -69,20 +56,7 @@ services:
       - database
       - murmur
       - rabbitmq
-    environment:
-      - DB_USERNAME=tf2stadium
-      - DB_PASSWORD=dickbutt
-      - DB_URL=database
-      - DB_NAME=tf2stadium
-      - DEBUG=true
-      - ICE_SECRET=pass
-      - ICE_HOST=murmur
-      - FUMBLE_MUMBLE_ADDR=murmur:64738
-      - FUMBLE_MUMBLE_USERNAME=SuperUser
-      #CHANGE THIS
-      - FUMBLE_MUMBLE_PASSWORD=
-      - FUMBLE_DATABASE_ADDR=database:5432
-      - FUMBLE_RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/
+    env_file: env/fumble-prod.env
     ports:
       - "8082:80"
 
