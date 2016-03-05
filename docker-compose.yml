@@ -13,6 +13,7 @@ services:
     ports:
       - "8080:80"
       - "8081:81"
+      #DISABLE FUMBLE FOR DEV
     entrypoint: /bin/helen -disable_pauling=false -disable_fumble=false
     stop_signal: SIGTERM
 
