@@ -1,0 +1,11 @@
+{
+    "scripts": [
+	{
+	    "command": "update.sh",
+	    "args": [
+		"prod.yml",
+		"pauling"
+	    ]
+	}
+    ]
+}
