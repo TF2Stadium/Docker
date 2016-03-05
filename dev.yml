@@ -1,0 +1,50 @@
+version: '2'
+services:
+  helen:
+    image: tf2stadium/helen:dev
+    restart: on-failure
+    depends_on:
+      - database
+      - rabbitmq
+      - pauling
+#     - fumble
+    env_file: env/helen-dev.env
+
+    ports:
+      - "8080:80"
+      - "8081:81"
+      #DISABLE FUMBLE FOR DEV
+    entrypoint: /bin/helen -disable_pauling=false
+    stop_signal: SIGTERM
+
+  pauling:
+    image: tf2stadium/pauling:dev
+    restart: on-failure
+    stop_signal: SIGTERM
+    depends_on:
+      - database
+      - rabbitmq
+    ports:
+      - "8002:8002/udp"
+    env_file: env/pauling-dev.env
+
+  frontend:
+    image: tf2stadium/frontend:dev
+    depends_on:
+      - helen
+    environment:
+      - WS_ENDPOINT=
+      - API_ENDPOINT=
+    ports:
+      - "80:80"
+
+  # fumble:
+  #   image: tf2stadium/fumble
+  #   restart: on-failure
+  #   depends_on:
+  #     - database
+  #     - murmur
+  #     - rabbitmq
+  #   env_file: env/fumble-prod.env
+  #   ports:
+  #     - "8082:80"
