@@ -54,4 +54,4 @@ services:
       - "74738:64738/tcp"
       - "74738:74739/udp"
     volumes:
-      - ./data/murmur/:/data
+      - ./data/murmur_dev/:/data

@@ -67,3 +67,5 @@ services:
     ports:
      - "64738:64738/tcp"
      - "64738:64738/udp"
+    volumes:
+     - ./data/murmur_prod/:/data
