@@ -63,6 +63,9 @@ services:
     volumes:
     - ./data/database_prod/:/var/lib/postgresql/data
 
+  rabbitmq:
+     volumes:
+       - ./data/rabbitmq_prod/:/var/lib/rabbitmq
   murmur:
     ports:
      - "64738:64738/tcp"
