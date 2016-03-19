@@ -1,0 +1,78 @@
+
+[{
+	"image": "tf2stadium/helen",
+	"hook": "helen-e0ab72dd-a099-4a13-9580-69109d686173",
+	"tags": {
+	    "latest": [
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "pull", "helen"],
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "stop", "helen"],
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "helen"]
+	    ],
+	    "dev1": [
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "pull", "helen"],
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "stop", "helen"],
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "helen"]
+	    ]
+	}
+    },
+    
+    {
+	"image": "tf2stadium/pauling",
+	"hook": "pauling-e0ab72dd-a099-4a13-9580-69109d686173",
+	"tags": {
+	    "latest": [
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "pull", "pauling"],
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "stop", "pauling"],
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "pauling"]
+	    ],
+	    "dev1": [
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "pull", "pauling"],
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "stop", "pauling"],
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "pauling"]
+	    ]
+	}
+    },
+    {
+	"image": "tf2stadium/fumble",
+	"hook": "fumble-e0ab72dd-a099-4a13-9580-69109d686173",
+	"tags": {
+	    "latest": [
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "pull", "fumble"],
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "stop", "fumble"],
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "fumble"]
+	    ],
+	    "dev1": [
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "pull", "fumble"],
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "stop", "fumble"],
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "fumble"]
+	    ]
+	}
+    },
+    {
+	"image": "tf2stadium/twitchbot",
+	"hook": "twitchbot-e0ab72dd-a099-4a13-9580-69109d686173",
+	"tags": {
+	    "latest": [
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "pull", "twitchbot"],
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "stop", "twitchbot"],
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "twitchbot"]
+	    ]
+	}
+    },
+    {
+	"image": "tf2stadium/frontend",
+	"hook": "frontend-e0ab72dd-a099-4a13-9580-69109d686173",
+	"tags": {
+	    "dev": [
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "pull", "frontend"],
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "stop", "frontend"],
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "frontend"]
+	    ],
+	    "dev1": [
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "pull", "frontend"],
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "stop", "frontend"],
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "frontend"]
+	    ]
+	}
+    }
+]

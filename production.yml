@@ -1,0 +1,71 @@
+version: '2'
+services:
+  helen:
+    image: tf2stadium/helen:latest
+    restart: always
+    depends_on:
+      - database
+      - rabbitmq
+      - pauling
+      - fumble
+      - twitchbot
+    env_file: env/helen-prod.env
+    ports:
+      - "127.0.0.1:3001:80"
+      - "127.0.0.1:3002:81"
+    entrypoint: /bin/helen -disable_pauling=false -disable_fumble=false -disable_twitchbot=false
+    stop_signal: SIGTERM
+
+  twitchbot:
+    image: tf2stadium/twitchbot:latest
+    restart: always
+    depends_on:
+      - database
+      - rabbitmq
+    ports:
+      - "localhost:3007:80"
+    env_file: env/twitchbot-prod.env
+
+  pauling:
+    image: tf2stadium/pauling:latest
+    restart: always
+    stop_signal: SIGTERM
+    depends_on:
+      - database
+      - rabbitmq
+    ports:
+      - "3003:3003/udp"
+      - "localhost:3005:80"
+    env_file: env/pauling-prod.env
+
+  frontend:
+    image: tf2stadium/frontend:dev
+    restart: always
+    depends_on:
+      - helen
+    env_file: env/frontend-prod.env
+    ports:
+      - "127.0.0.1:3004:80"
+
+  fumble:
+    image: tf2stadium/fumble
+    restart: always
+    depends_on:
+      - database
+      - murmur
+      - rabbitmq
+    ports:
+      - "localhost:3006:80"
+    env_file: env/fumble-prod.env
+
+  database:
+    env_file: env/database-prod.env
+    volumes:
+    - ./data/database_prod/lib:/var/lib/postgresql
+    - ./data/database_prod/config:/etc/postgresql
+    - ./data/database_prod/log:/var/log/postgresql
+
+  murmur:
+    ports:
+     - "64738:64738/tcp"
+     - "64738:64738/udp"

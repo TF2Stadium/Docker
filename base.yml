@@ -2,23 +2,15 @@ version: '2'
 services:
   database:
     image: postgres
-    environment:
-    - POSTGRES_PASSWORD=dickbutt
-    - POSTGRES_USER=tf2stadium
-    - POSTGRES_DB=tf2stadium
-    volumes:
-    - /var/lib/postgresql
-    - /etc/postgresql
-    - /var/log/postgresql
+    restart: always
 
   rabbitmq:
     image: rabbitmq
+    restart: always
+    volumes:
+      - ./data/rabbitmq/:/var/lib/rabbitmq
 
   murmur:
     image: tf2stadium/murmur
-    environment:
-      #CHANGE THIS
-      - MURMUR_PASSWORD=
-    ports:
-      - "64738:64738/tcp"
-      - "64378:64738/udp"
+    restart: always
+    env_file: env/murmur.env
