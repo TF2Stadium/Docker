@@ -47,9 +47,7 @@ services:
   database:
      env_file: env/database-dev.env
      volumes:
-       - ./data/database_dev/lib:/var/lib/postgresql
-       - ./data/database_dev/config:/etc/postgresql
-       - ./data/database_dev/log:/var/log/postgresql
+       - ./data/database_dev/data:/var/lib/postgresql/data
 
   murmur:
     ports:
