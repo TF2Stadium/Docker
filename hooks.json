@@ -5,13 +5,11 @@
 	"tags": {
 	    "latest": [
 		["docker-compose", "-f", "base.yml", "-f", "production.yml", "pull", "helen"],
-		["docker-compose", "-f", "base.yml", "-f", "production.yml", "stop", "helen"],
-		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "helen"]
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "--no-deps", "helen"]
 	    ],
 	    "dev1": [
 		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "pull", "helen"],
-		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "stop", "helen"],
-		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "helen"]
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "--no-deps", "helen"]
 	    ]
 	}
     },
@@ -22,13 +20,11 @@
 	"tags": {
 	    "latest": [
 		["docker-compose", "-f", "base.yml", "-f", "production.yml", "pull", "pauling"],
-		["docker-compose", "-f", "base.yml", "-f", "production.yml", "stop", "pauling"],
-		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "pauling"]
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "--no-deps", "pauling"]
 	    ],
 	    "dev1": [
 		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "pull", "pauling"],
-		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "stop", "pauling"],
-		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "pauling"]
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "--no-deps", "pauling"]
 	    ]
 	}
     },
@@ -38,13 +34,11 @@
 	"tags": {
 	    "latest": [
 		["docker-compose", "-f", "base.yml", "-f", "production.yml", "pull", "fumble"],
-		["docker-compose", "-f", "base.yml", "-f", "production.yml", "stop", "fumble"],
-		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "fumble"]
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "--no-deps", "fumble"]
 	    ],
 	    "dev1": [
 		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "pull", "fumble"],
-		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "stop", "fumble"],
-		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "fumble"]
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "--no-deps", "fumble"]
 	    ]
 	}
     },
@@ -54,8 +48,7 @@
 	"tags": {
 	    "latest": [
 		["docker-compose", "-f", "base.yml", "-f", "production.yml", "pull", "twitchbot"],
-		["docker-compose", "-f", "base.yml", "-f", "production.yml", "stop", "twitchbot"],
-		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "twitchbot"]
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "--no-deps", "twitchbot"]
 	    ]
 	}
     },
@@ -65,13 +58,11 @@
 	"tags": {
 	    "dev": [
 		["docker-compose", "-f", "base.yml", "-f", "production.yml", "pull", "frontend"],
-		["docker-compose", "-f", "base.yml", "-f", "production.yml", "stop", "frontend"],
-		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "frontend"]
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "--no-deps", "frontend"]
 	    ],
 	    "dev1": [
 		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "pull", "frontend"],
-		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "stop", "frontend"],
-		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "frontend"]
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "--no-deps", "frontend"]
 	    ]
 	}
     }
