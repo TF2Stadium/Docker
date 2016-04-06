@@ -4,12 +4,12 @@
 	"tags": {
 	    "latest": [
 		["docker-compose", "-f", "base.yml", "-f", "production.yml", "pull", "helen"],
-		["docker-compose", "-f", "base.yml", "-f", "production.yml", "stop", "--timeout", "600", "helen"],
+		["docker-compose", "-f", "base.yml", "-f", "production.yml", "stop", "--timeout", "6000", "helen"],
 		["docker-compose", "-f", "base.yml", "-f", "production.yml", "up", "-d", "--no-deps", "helen"]
 	    ],
 	    "dev1": [
 		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "pull", "helen"],
-		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "stop", "--timeout", "600", "helen"],
+		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "stop", "--timeout", "6000", "helen"],
 		["docker-compose", "-f", "base.yml", "-f", "dev.yml", "up", "-d", "--no-deps", "helen"]
 	    ]
 	}
