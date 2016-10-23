@@ -61,14 +61,14 @@ services:
   database:
     env_file: env/database-prod.env
     volumes:
-    - ./data/database_prod/:/var/lib/postgresql/data
+    - ./data/database_prod/:/var/lib/postgresql/data:z
 
   rabbitmq:
      volumes:
-       - ./data/rabbitmq_prod/:/var/lib/rabbitmq
+       - ./data/rabbitmq_prod/:/var/lib/rabbitmq:z
   murmur:
     ports:
      - "64738:64738/tcp"
      - "64738:64738/udp"
     volumes:
-     - ./data/murmur_prod/:/data
+     - ./data/murmur_prod/:/data:z

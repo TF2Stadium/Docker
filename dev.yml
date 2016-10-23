@@ -47,15 +47,15 @@ services:
   database:
      env_file: env/database-dev.env
      volumes:
-       - ./data/database_dev/data:/var/lib/postgresql/data
+       - ./data/database_dev/data:/var/lib/postgresql/data:z
 
   rabbitmq:
      volumes:
-       - ./data/rabbitmq_dev/:/var/lib/rabbitmq
+       - ./data/rabbitmq_dev/:/var/lib/rabbitmq:z
 
   murmur:
     ports:
       - "74738:64738/tcp"
       - "74738:74739/udp"
     volumes:
-      - ./data/murmur_dev/:/data
+      - ./data/murmur_dev/:/data:z
