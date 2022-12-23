@@ -66,9 +66,10 @@ services:
   rabbitmq:
      volumes:
        - ./data/rabbitmq_prod/:/var/lib/rabbitmq:z
-  murmur:
+
+  mumble:
+    image: mumblevoip/mumble-server:v1.4.287-2
+    env_file: env/mumble-prod.env
     ports:
-     - "64738:64738/tcp"
-     - "64738:64738/udp"
-    volumes:
-     - ./data/murmur_prod/:/data:z
+      - "64738:64738"
+      - "64738:64738/udp"

@@ -40,7 +40,7 @@ services:
      restart: always
      depends_on:
        - database
-       - murmur
+       - mumble
        - rabbitmq
      env_file: env/fumble-dev.env
 
@@ -53,9 +53,9 @@ services:
      volumes:
        - ./data/rabbitmq_dev/:/var/lib/rabbitmq:z
 
-  murmur:
+  mumble:
+    image: mumblevoip/mumble-server:v1.4.287-2
+    env_file: env/mumble.env
     ports:
-      - "74738:64738/tcp"
-      - "74738:74739/udp"
-    volumes:
-      - ./data/murmur_dev/:/data:z
+      - "64738:64738"
+      - "64738:64738/udp"
