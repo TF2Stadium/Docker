@@ -31,6 +31,7 @@ services:
     image: tf2stadium/frontend:dev
     depends_on:
       - helen
+      - database
     env_file: env/frontend-dev.env
     ports:
       - "4004:80"
@@ -45,11 +46,15 @@ services:
      env_file: env/fumble-dev.env
 
   database:
+     image: postgres:9.6
      env_file: env/database-dev.env
+     ports:
+       - "5432:5432"
      volumes:
        - ./data/database_dev/data:/var/lib/postgresql/data:z
 
   rabbitmq:
+     image: rabbitmq
      volumes:
        - ./data/rabbitmq_dev/:/var/lib/rabbitmq:z
 
