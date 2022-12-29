@@ -59,16 +59,21 @@ services:
     env_file: env/fumble-prod.env
 
   database:
+    image: postgres:9.6
+    restart: always
     env_file: env/database-prod.env
     volumes:
     - ./data/database_prod/:/var/lib/postgresql/data:z
 
   rabbitmq:
-     volumes:
+    image: rabbitmq:3.7.3
+    restart: always
+    volumes:
        - ./data/rabbitmq_prod/:/var/lib/rabbitmq:z
 
   mumble:
     image: mumblevoip/mumble-server:v1.4.287-2
+    restart: always
     env_file: env/mumble-prod.env
     ports:
       - "64738:64738"

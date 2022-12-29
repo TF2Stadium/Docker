@@ -54,7 +54,7 @@ services:
        - ./data/database_dev/data:/var/lib/postgresql/data:z
 
   rabbitmq:
-     image: rabbitmq
+     image: rabbitmq:3.7.3
      volumes:
        - ./data/rabbitmq_dev/:/var/lib/rabbitmq:z
 
