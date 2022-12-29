@@ -60,7 +60,7 @@ services:
 
   mumble:
     image: mumblevoip/mumble-server:v1.4.287-2
-    env_file: env/mumble.env
+    env_file: env/mumble-dev.env
     ports:
       - "64738:64738"
       - "64738:64738/udp"
